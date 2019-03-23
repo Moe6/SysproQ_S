@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SysproQ.Entity", "SysproQ.Entity\SysproQ.Entity.vbproj", "{5F073659-EF8A-4D8E-A7AC-EB5C2CE2C464}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SysproQ.DAL", "SysproQ.DAL\SysproQ.DAL.vbproj", "{7989A2E9-935A-4C17-A2A5-6D05B1D36452}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SysproQ.BLL", "SysproQ.BLL\SysproQ.BLL.vbproj", "{D4898F84-D569-4F9C-B9CD-0D807FD26DE6}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WcfServiceLibrary1", "WcfServiceLibrary1\WcfServiceLibrary1.vbproj", "{5EA061C5-A7EE-499B-98EC-3F548133BCCD}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ServiceConfigurator", "ServiceConfigurator\ServiceConfigurator\ServiceConfigurator.vbproj", "{04473383-6F5C-40F3-85A4-960BE62B218F}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SysproQIISHost(1)", "SysproQIISHost\", "{46A79B41-8673-4A2F-A6B7-82B79C242BDE}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_54128"
+		Debug.AspNetCompiler.PhysicalPath = "SysproQIISHost\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54128\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_54128"
+		Release.AspNetCompiler.PhysicalPath = "SysproQIISHost\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54128\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "54128"
+		SlnRelativePath = "SysproQIISHost\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F073659-EF8A-4D8E-A7AC-EB5C2CE2C464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F073659-EF8A-4D8E-A7AC-EB5C2CE2C464}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F073659-EF8A-4D8E-A7AC-EB5C2CE2C464}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F073659-EF8A-4D8E-A7AC-EB5C2CE2C464}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7989A2E9-935A-4C17-A2A5-6D05B1D36452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7989A2E9-935A-4C17-A2A5-6D05B1D36452}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7989A2E9-935A-4C17-A2A5-6D05B1D36452}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7989A2E9-935A-4C17-A2A5-6D05B1D36452}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4898F84-D569-4F9C-B9CD-0D807FD26DE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4898F84-D569-4F9C-B9CD-0D807FD26DE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4898F84-D569-4F9C-B9CD-0D807FD26DE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4898F84-D569-4F9C-B9CD-0D807FD26DE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EA061C5-A7EE-499B-98EC-3F548133BCCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EA061C5-A7EE-499B-98EC-3F548133BCCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EA061C5-A7EE-499B-98EC-3F548133BCCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EA061C5-A7EE-499B-98EC-3F548133BCCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04473383-6F5C-40F3-85A4-960BE62B218F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04473383-6F5C-40F3-85A4-960BE62B218F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04473383-6F5C-40F3-85A4-960BE62B218F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04473383-6F5C-40F3-85A4-960BE62B218F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46A79B41-8673-4A2F-A6B7-82B79C242BDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46A79B41-8673-4A2F-A6B7-82B79C242BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46A79B41-8673-4A2F-A6B7-82B79C242BDE}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{46A79B41-8673-4A2F-A6B7-82B79C242BDE}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF9E2763-FA77-4536-825D-5B824A089978}
+	EndGlobalSection
+EndGlobal

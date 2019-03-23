@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Default Web Site/SysproQService" />
+  <setParameter name="SysproQ.DAL.SysproQ.Entity.SysproEntities-Web.config Connection String" value="" />
+  <setParameter name="SysproEntities-Web.config Connection String" value="$(ReplacableToken_SysproEntities-Web.config Connection String_0)" />
+</parameters>
