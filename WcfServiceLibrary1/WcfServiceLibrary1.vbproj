@@ -105,10 +105,6 @@
       <Project>{d4898f84-d569-4f9c-b9cd-0d807fd26de6}</Project>
       <Name>SysproQ.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SysproQ.DAL\SysproQ.DAL.vbproj">
-      <Project>{7989a2e9-935a-4c17-a2a5-6d05b1d36452}</Project>
-      <Name>SysproQ.DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SysproQ.Entity\SysproQ.Entity.vbproj">
       <Project>{5f073659-ef8a-4d8e-a7ac-eb5c2ce2c464}</Project>
       <Name>SysproQ.Entity</Name>
