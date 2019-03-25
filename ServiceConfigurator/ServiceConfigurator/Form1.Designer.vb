@@ -29,6 +29,7 @@
         Me.btnAddLine = New DevExpress.XtraBars.BarButtonItem()
         Me.btnPost = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarHeaderItem1 = New DevExpress.XtraBars.BarHeaderItem()
         Me.ribbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.ribbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup3 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -54,7 +55,6 @@
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.rowPO = New DevExpress.XtraVerticalGrid.Rows.EditorRow()
         Me.rowCustomer = New DevExpress.XtraVerticalGrid.Rows.EditorRow()
-        Me.BarHeaderItem1 = New DevExpress.XtraBars.BarHeaderItem()
         CType(Me.ribbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -113,6 +113,12 @@
         Me.BarButtonItem1.ImageOptions.LargeImage = CType(resources.GetObject("BarButtonItem1.ImageOptions.LargeImage"), System.Drawing.Image)
         Me.BarButtonItem1.Name = "BarButtonItem1"
         '
+        'BarHeaderItem1
+        '
+        Me.BarHeaderItem1.Caption = "        "
+        Me.BarHeaderItem1.Id = 5
+        Me.BarHeaderItem1.Name = "BarHeaderItem1"
+        '
         'ribbonPage1
         '
         Me.ribbonPage1.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.ribbonPageGroup1, Me.RibbonPageGroup3})
@@ -150,6 +156,7 @@
         '
         'VGridControl1
         '
+        Me.VGridControl1.Cursor = System.Windows.Forms.Cursors.SizeWE
         Me.VGridControl1.DataSource = Me.BindingSource1
         Me.VGridControl1.Location = New System.Drawing.Point(12, 12)
         Me.VGridControl1.Name = "VGridControl1"
@@ -297,12 +304,6 @@
         Me.rowCustomer.Name = "rowCustomer"
         Me.rowCustomer.Properties.Caption = "Customer"
         Me.rowCustomer.Properties.FieldName = "Customer"
-        '
-        'BarHeaderItem1
-        '
-        Me.BarHeaderItem1.Caption = "        "
-        Me.BarHeaderItem1.Id = 5
-        Me.BarHeaderItem1.Name = "BarHeaderItem1"
         '
         'Form1
         '

@@ -1,7 +1,10 @@
-﻿Imports SysproQ.DAL
-Imports SysproQ.Entity
+﻿Imports SysproQ.Entity
 
 Public Class Query
+    Public Sub New()
+
+    End Sub
+
     Public Function FillSorDetails(so As String) As List(Of SorDetail)
         Using dal As New DAL.Query
             Return dal.FillSalesOrderDetails(so)
@@ -27,6 +30,12 @@ Public Class Query
     Public Function FillInvMaster(stockCode As String) As InvMaster
         Using d As New DAL.Query
             Return d.FillInvMaster(stockCode)
+        End Using
+    End Function
+
+    Public Function FillInvWarehouse(stockcode As String, wh As String) As InvWarehouse
+        Using d As New DAL.Query
+            Return d.FillInveWarehouse(stockcode, wh)
         End Using
     End Function
 End Class

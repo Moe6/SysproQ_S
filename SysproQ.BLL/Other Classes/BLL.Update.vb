@@ -11,4 +11,17 @@ Public Class Update
             Return dal.Save
         End Using
     End Function
+
+    Public Sub Update(obj As List(Of SorDetail))
+        Using dal As New DAL.Update
+            dal.Update(obj)
+        End Using
+    End Sub
+
+    Public Sub Update(obj As List(Of InvWarehouse))
+        Using d As New DAL.Update
+            d.Update(obj)
+        End Using
+    End Sub
+
 End Class

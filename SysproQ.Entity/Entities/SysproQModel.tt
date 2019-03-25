@@ -2,7 +2,7 @@
 <#@ include file="EF6.Utility.VB.ttinclude"#><#@
  output extension=".vb"#><#
 
-Const inputFile As String = "C:\Users\Moe\Documents\Visual Studio 2017\Projects\SysproQ\SysproQ.DAL\Models\SysproQModel.edmx"
+Const inputFile As String = "C:\Users\Moe\Documents\Visual Studio 2017\Projects\SysproQ\S.DAL\Models\SysproQModel.edmx"
 Dim textTransform As DynamicTextTransformation = DynamicTextTransformation.Create(Me)
 Dim code As CodeGenerationTools = New CodeGenerationTools(Me)
 Dim ef As MetadataTools = New MetadataTools(Me)

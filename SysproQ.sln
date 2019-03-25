@@ -32,6 +32,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SysproQIISHost(1)", "Syspro
 		SlnRelativePath = "SysproQIISHost\"
 	EndProjectSection
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SysproQ.DAL", "SysproQ.DAL\SysproQ.DAL.vbproj", "{16300CC9-2E0C-4ED4-B1E6-33771E48DACE}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "S.DAL", "S.DAL\S.DAL.vbproj", "{669B64CC-2F62-4F2E-A77B-D954055D99DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +62,14 @@ Global
 		{46A79B41-8673-4A2F-A6B7-82B79C242BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46A79B41-8673-4A2F-A6B7-82B79C242BDE}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{46A79B41-8673-4A2F-A6B7-82B79C242BDE}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{16300CC9-2E0C-4ED4-B1E6-33771E48DACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16300CC9-2E0C-4ED4-B1E6-33771E48DACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16300CC9-2E0C-4ED4-B1E6-33771E48DACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16300CC9-2E0C-4ED4-B1E6-33771E48DACE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{669B64CC-2F62-4F2E-A77B-D954055D99DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{669B64CC-2F62-4F2E-A77B-D954055D99DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{669B64CC-2F62-4F2E-A77B-D954055D99DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{669B64CC-2F62-4F2E-A77B-D954055D99DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

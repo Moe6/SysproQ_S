@@ -1,6 +1,6 @@
 ﻿Imports SysproQ.Entity
 Imports SYSPROWCFServicesClientLibrary40
-Imports System.IO
+
 Public Class Post
     Implements IDisposable
 
@@ -30,6 +30,8 @@ Public Class Post
     Private _soLines As List(Of SoLines)
     Private _kitItems As List(Of Kit)
     Private _ChildNodesToCancel As List(Of SorDetail)
+    Private _warehouseComponents As List(Of InvWarehouse)
+    Private _kitItemstoUpdate As List(Of SorDetail)
 
     Public ReadOnly Property PostResult As SysproPostXmlOutResult
         Get
@@ -187,7 +189,7 @@ Public Class Post
     End Sub
 
     Private Function CheckSalesOrderPost(salesorder As String) As Boolean
-        Dim b As New BLL.Query
+        Dim b As New Query
         Dim result As Boolean
         'Fill the created sales order
         _omaster = b.FillSorMaster(salesorder)
@@ -208,13 +210,7 @@ Public Class Post
                             If Trim(item.MBomFlag) = "P" Then
                                 'this is Parent Item in Bom Structure
                                 'Validate all its Children and process Accordingly
-                                If item.MOrderQty <> item.QtyReserved Then
-                                    'parent item could not be reserved
-                                    'therefore no need to check component items
-                                    ParentItemFailMessges(item)
-                                Else
-                                    ValidateParentBomItemPostQty(item)
-                                End If
+                                result = ProcessBomItems(item)
                             End If
                         End If
                     Next
@@ -227,7 +223,6 @@ Public Class Post
         Else
             AppendTrnMessage("An Error occured.")
         End If
-
         Return result
     End Function
 
@@ -251,6 +246,12 @@ Public Class Post
         End If
     End Sub
 
+    Private Function ProcessBomItems(parentItem As SorDetail) As Boolean
+        If ValidateParentBomItemPostQty(parentItem) Then
+            Return True
+        End If
+        Return False
+    End Function
 
 #Region "BOM Structure Validation"
 
@@ -262,34 +263,37 @@ Public Class Post
         Return False
     End Function
 
-    Private Sub ValidateParentBomItemPostQty(parentItem As SorDetail)
+    Private Function ValidateParentBomItemPostQty(parentItem As SorDetail) As Boolean
         'Get All Child Nodes for Parent Bom Item
-        Dim childNodes As New List(Of SorDetail)
+        _kitItemstoUpdate = New List(Of SorDetail)
         Dim fComps = _kitItems.Where(Function(c) c.ComponentOf = parentItem.MStockCode).ToList
+
+        'Get all the child Nodes for this Kit Parent item
         For Each comp In fComps
-
-            Dim found = _postedOrder.Where(Function(c) c.MStockCode = comp.StockCode And c.SalesOrderLine > parentItem.SalesOrderInitLine And Trim(c.MBomFlag) = "C").FirstOrDefault
+            Dim found = _postedOrder.Where(Function(c) c.MStockCode = comp.StockCode And c.SalesOrderLine > parentItem.SalesOrderInitLine _
+                And Trim(c.MBomFlag) = "C").FirstOrDefault
             If found IsNot Nothing Then
-                childNodes.Add(found)
-            End If
-            If childNodes.Count > 0 Then
-                If Not VerifyPostOfChildNodes(childNodes) Then
-                    'Reserving of Components of parent was not successful
-                    'Therefore Cancel the Parent Item and the Child componets will be cancelled
-                    ParentItemFailMessges(parentItem)
-                    'Do Next ----------->
-
-                Else
-                    'Reserving of Components was successful
-                    'Get the Parent item and send as Success Message
-                    ParentItemSuccessMessges(parentItem)
-                    'Do Next ----------------->
-
-
-                End If
+                _kitItemstoUpdate.Add(found)
             End If
         Next
-    End Sub
+
+        If _kitItemstoUpdate.Count > 0 Then
+            'Add parent item for processing
+            _kitItemstoUpdate.Add(parentItem)
+            If ValidateAvailableQtyForComponnents(_kitItemstoUpdate) Then
+                If ReserveComponents(_kitItemstoUpdate) Then
+                    If UpdateWarehouseAllocation(_kitItemstoUpdate) Then
+                        If Update() Then
+                            ParentItemSuccessMessges(parentItem)
+                            Return True
+                        End If
+                    End If
+                End If
+            End If
+        End If
+        ParentItemFailMessges(parentItem)
+        Return False
+    End Function
 
     Private Function VerifyPostOfChildNodes(ls As List(Of SorDetail)) As Boolean
         Dim verified As Boolean = True
@@ -312,6 +316,63 @@ Public Class Post
         Dim x = FormatResult(item, msg, "OK")
         AppendTrnMessage(x.ToString)
     End Sub
+
+#Region "Handle Qty Updates and Validation"
+
+    Private Function ValidateAvailableQtyForComponnents(components As List(Of SorDetail)) As Boolean
+        Dim validCount As Integer = 0
+        _warehouseComponents = New List(Of InvWarehouse)
+        For Each item In components.Where(Function(c) c.MBomFlag = "C").ToList
+            Dim b As New Query
+            Dim warehouse = b.FillInvWarehouse(item.MStockCode, item.MWarehouse)
+            If warehouse IsNot Nothing Then
+                If (warehouse.QtyOnHand - warehouse.QtyAllocated) >= item.MOrderQty Then
+                    validCount += 1
+                    'Add warehouse component to list for update if all items successful
+                    _warehouseComponents.Add(warehouse)
+                End If
+            End If
+        Next
+        Return validCount = components.Count - 1
+    End Function
+
+    Private Function ReserveComponents(components As List(Of SorDetail)) As Boolean
+        'Update Reserved Qty for Kit Component items including the Kit Item
+        For Each item In components
+            item.QtyReserved = item.MOrderQty
+            item.QtyReservedShip = item.MOrderQty
+            item.MBackOrderQty = 0
+            item.MShipQty = 0
+        Next
+        Return True
+    End Function
+
+    Private Function UpdateWarehouseAllocation(components As List(Of SorDetail)) As Boolean
+        'Update warehouse Alllocated Qty for each of the Componets reserved
+        Dim itemCount As Integer = 0
+        For Each component In components.Where(Function(c) c.MBomFlag = "C").ToList
+            Dim found = _warehouseComponents.Where(Function(c) c.StockCode = component.MStockCode And c.Warehouse = component.MWarehouse).FirstOrDefault
+            If found IsNot Nothing Then
+                found.QtyAllocated += component.MOrderQty
+                itemCount += 1
+            End If
+        Next
+        Return itemCount = components.Where(Function(c) c.MBomFlag = "C").Count
+    End Function
+
+    Private Function Update() As Boolean
+        Dim bll As New Update
+        bll.Update(_warehouseComponents)
+        bll.Update(_kitItemstoUpdate)
+        If bll.Save Then
+            Return True
+        End If
+        Return False
+    End Function
+
+#End Region
+
+
 
 #End Region
 

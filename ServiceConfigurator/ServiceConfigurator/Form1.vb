@@ -2,6 +2,9 @@
 Imports System.Xml.Serialization
 Imports System.IO
 Imports System.Xml
+Imports SysproQ.BLL
+Imports SysproQ.Entity
+Imports S.DAL
 
 Partial Public Class Form1
     Inherits DevExpress.XtraBars.Ribbon.RibbonForm
@@ -145,6 +148,21 @@ Partial Public Class Form1
             'strIn = CreateXmlin(_OrderHeader, _orderDetails)
             'SerializeToFile(_OrderHeader)
 
+
+            Using dal As New S.DAL.Query
+                Dim q = dal.FillInvMaster("KIT100")
+                If q IsNot Nothing Then
+                    Console.WriteLine($"{q.StockCode}")
+                End If
+            End Using
+
+
+
+            Dim bll As New SysproQ.BLL.Query
+            Dim x = bll.FillInvMaster("KIT100")
+            If x IsNot Nothing Then
+                MsgBox(x.StockCode)
+            End If
             'Do Post 
             returnedMsg = wcfService.Post2(strIn)
 

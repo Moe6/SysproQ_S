@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="756661f1a3414c68b68298952994f4ef" Name="Diagram1" ZoomLevel="25">
+        <EntityTypeShape EntityType="SysproModel.ArCustomer" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproModel.BomStructure" Width="1.5" PointX="9.625" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproModel.SorDetail" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SysproModel.SorMaster" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="SysproModel.Syspro_FK_SorMaster_ArCustomer" ManuallyRouted="false" />
+        <AssociationConnector Association="SysproModel.Syspro_FK_SorDetail_SorMaster" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SysproModel.InvMaster" Width="1.5" PointX="7.125" PointY="1.875" />
+        <EntityTypeShape EntityType="SysproModel.InvWarehouse" Width="1.5" PointX="12.875" PointY="4" />
+        <AssociationConnector Association="SysproModel.Syspro_FK_InvWarehouse_InvMaster" />
+        <AssociationConnector Association="SysproModel.Syspro_FK_SorDetail_InvMaster" />
+        <AssociationConnector Association="SysproModel.Syspro_FK_SorDetail_InvWarehouse" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
